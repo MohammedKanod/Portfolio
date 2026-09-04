@@ -1,0 +1,129 @@
+{
+  "_instructions": {
+    "about": "This file powers ALL content on your website. You can edit any text, headings, or links here.",
+    "how_to_add_projects": "Add an object into the 'projects' array below. If 'projects' is empty [], the website automatically displays a sleek 'COMING SOON' card.",
+    "project_template": {
+      "id": "unique-id-slug",
+      "number": "01",
+      "title": "PROJECT NAME",
+      "subtitle": "Short subtitle or domain",
+      "category": "Artificial Intelligence / Systems",
+      "year": "2026",
+      "oneLiner": "A single compelling sentence describing what this is.",
+      "description": "Full narrative description of the system, motivation, and technical exploration.",
+      "tags": [
+        "Python",
+        "Rust",
+        "Kernel"
+      ],
+      "metrics": [
+        {
+          "label": "Latency",
+          "value": "< 10ms"
+        }
+      ],
+      "highlights": [
+        "First key technical breakthrough",
+        "Second key architectural insight"
+      ],
+      "takeaway": "What this experiment proved or taught you.",
+      "github": "https://github.com/yourname/repo",
+      "demo": "https://demo.example.com"
+    },
+    "how_to_add_experiments": "Add an object into the 'experiments' array below. If 'experiments' is empty [], the website automatically displays a sleek 'COMING SOON' card."
+  },
+  "site": {
+    "name": "MOHAMMED KANOD",
+    "shortName": "KANOD",
+    "title": "Mohammed Kanod — Builder, Cybersecurity & Technology",
+    "role": "Computer Science & Cybersecurity Student / Builder / Experimenter",
+    "status": "ACTIVE LAB MODE",
+    "email": "mohammedkanod53@gmail.com",
+    "github": "https://github.com/MohammedKanod",
+    "linkedin": "https://www.linkedin.com/in/mohammed-kanod-a7ba9422a/",
+    "instagram": "https://x.com"
+  },
+  "hero": {
+    "label": "IDENTITY // CS & CYBERSECURITY",
+    "headlinePart1": "I BUILD THINGS",
+    "headlinePart2": "THAT SHOULDN'T",
+    "headlinePart3": "EXIST YET.",
+    "narrativeLead": "Mohammed Kanod is a builder, experimenter, and computer science student exploring the friction between autonomous software, operating system kernels, and physical computation.",
+    "narrativeSub": "Curious by default. Not interested in conventional SaaS templates or safe formulas. I build prototypes to find where systems break and understand why they work.",
+    "status": "CURRENT STATUS: ACTIVE LAB MODE"
+  },
+  "projects": [],
+  "experiments": [],
+  "philosophy": {
+    "eyebrow": "THE AXIOMATIC CYCLE",
+    "loopHeadline": "LEARN → BREAK → BUILD → QUESTION → REBUILD",
+    "principles": [
+      {
+        "number": "01",
+        "statement": "QUESTION THE DEFAULT",
+        "tagline": "Why does it have to work this way?",
+        "description": "Standard architectures exist for historical convenience, not theoretical optimality. Always interrogate first principles before accepting standard libraries or conventional patterns."
+      },
+      {
+        "number": "02",
+        "statement": "BUILD BEFORE YOU OVERTHINK",
+        "tagline": "A working prototype teaches more than endless planning.",
+        "description": "Speculation produces debate; working software produces truth. When an architectural hypothesis is uncertain, write the minimal proof of concept and run it."
+      },
+      {
+        "number": "03",
+        "statement": "FOLLOW CURIOSITY",
+        "tagline": "The most interesting projects begin with a strange question.",
+        "description": "Linear goal-setting produces incremental iterations. Unconventional breakthroughs emerge when following deep technical curiosity into unfamiliar domains."
+      },
+      {
+        "number": "04",
+        "statement": "FAILURE IS DATA",
+        "tagline": "If something breaks, find out why.",
+        "description": "A system crash or dropped packet is not an inconvenience—it is telemetry. The boundary where software behaves unpredictably reveals its true architecture."
+      }
+    ]
+  },
+  "cybersecurity": {
+    "label": "CYBERSECURITY",
+    "category": "ADVERSARIAL SYSTEMS",
+    "headlinePart1": "I LIKE SYSTEMS",
+    "headlinePart2": "MOST WHEN THEY",
+    "headlinePart3": "FIGHT BACK.",
+    "narrative": "When software runs as intended, it follows instructions. But when it fails under adversarial conditions, its true assumptions are revealed. I focus on kernel boundaries, memory safety, and raw protocol integrity."
+  },
+  "about": {
+    "label": "BEYOND THE SCREEN",
+    "category": "THE UNFINISHED HUMAN",
+    "headlinePart1": "I'M STILL FIGURING",
+    "headlinePart2": "THINGS OUT.",
+    "narrativeLead": "This portfolio is not a monument to a finished expert. It is an honest, real-time chronicle of someone in the thick of learning, experimenting, and finding where the boundaries break.",
+    "narrativeBody1": "As a Computer Science and Cybersecurity student, my formal education is the baseline, but the real insights come from late-night experiments—reading systems papers, compiling code from scratch, and reverse-engineering protocols.",
+    "narrativeBody2": "I don't believe in fake polish. True technical understanding comes from having the patience to break things down to first principles and the stamina to rebuild them until they hold.",
+    "academics": "COMPUTER SCIENCE & CYBERSECURITY",
+    "focus": "SYSTEMS, KERNELS & AMBIENT AI",
+    "mindset": "LEARN → BREAK → BUILD → REBUILD"
+  },
+  "currently": {
+    "label": "STATUS",
+    "category": "CURRENT ACTIVE VECTORS",
+    "headline": "CURRENTLY.",
+    "items": [
+      {
+        "key": "LEARNING",
+        "title": "CYBERSECURITY & KERNEL SYSTEMS",
+        "detail": "Deep-diving into low-level operating system boundaries, eBPF telemetry, memory safety in Rust, and network protocol defense.",
+        "tag": "ACADEMIC & EMPIRICAL"
+      }
+    ]
+  },
+  "contact": {
+    "label": "DISPATCH",
+    "category": "DIRECT CHANNELS",
+    "headlinePart1": "HAVE AN IDEA?",
+    "headlinePart2": "LET'S SEE",
+    "headlinePart3": "WHERE IT GOES.",
+    "subtext": "PRIMARY TRANSMISSION CHANNEL",
+    "responseLatency": "RESPONSE LATENCY: TYPICALLY < 24 HOURS"
+  }
+}

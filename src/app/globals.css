@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas-bg: #F8F7F4;
+  --canvas-dark: #0A0B0E;
+  --ink-primary: #0D0E11;
+  --ink-secondary: #4A4D55;
+  --ink-muted: #7E828E;
+  --accent: #2563EB;
+  --accent-light: #60A5FA;
+  --border-light: rgba(13, 14, 17, 0.08);
+  --border-dark: rgba(246, 245, 240, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  cursor: none !important; /* Cursor is completely invisible on the website */
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--canvas-bg);
+  color: var(--ink-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apple-style Ambient Background Gradients */
+.apple-ambient-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.apple-ambient-bg::before {
+  content: "";
+  position: absolute;
+  top: -15%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 750px;
+  max-height: 750px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(191, 219, 254, 0.45) 0%, rgba(219, 234, 254, 0.2) 50%, transparent 70%);
+  filter: blur(80px);
+}
+
+.apple-ambient-bg::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 231, 255, 0.5) 0%, rgba(243, 232, 255, 0.25) 50%, transparent 70%);
+  filter: blur(90px);
+}
+
+/* Apple Glassmorphism Surfaces */
+.apple-glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.apple-glass:hover {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 14px 38px -10px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.apple-glass-dark {
+  background: rgba(15, 18, 26, 0.65);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Apple Typography Gradients */
+.apple-gradient-text {
+  background: linear-gradient(135deg, #0D0E11 20%, #1D4ED8 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.apple-gradient-ice {
+  background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Fluid Responsive Typography Clamp for 100vh fit */
+.display-title {
+  font-size: clamp(2.2rem, 7vw, 7rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+}
+
+.section-headline {
+  font-size: clamp(1.65rem, 3.8vw, 3.8rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+}
+
+/* Modal and card fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

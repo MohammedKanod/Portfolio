@@ -1,0 +1,102 @@
+[
+  {
+    "id": "memory",
+    "number": "01",
+    "title": "MEMORY",
+    "subtitle": "Wearable AI Context Engine",
+    "category": "Artificial Intelligence / Edge Hardware",
+    "year": "2025",
+    "oneLiner": "An experimental ambient wearable AI that passively captures, indexes, and structures real-world dialogue in real time.",
+    "description": "MEMORY explores how ambient computing can serve as an external cognitive buffer. Processing continuous audio on local edge hardware, it detects voice activity, transcribes speech locally, and structures conceptual relationships into a private vector graph without relying on third-party cloud infrastructure.",
+    "tags": ["Python", "Whisper", "Vector Embeddings", "FastAPI", "Edge Hardware"],
+    "metrics": [
+      { "label": "Latency", "value": "< 240ms" },
+      { "label": "Cloud Dependency", "value": "0% (Offline)" },
+      { "label": "Indexed Dialogue", "value": "12,400+ turns" }
+    ],
+    "highlights": [
+      "Low-power dual MEMS microphone capture paired with edge companion board",
+      "Real-time voice activity detection pruning silence before neural inference",
+      "Local quantized Whisper model generating millisecond-stamped transcripts",
+      "Embedded vector database mapping personal concept associations"
+    ],
+    "takeaway": "Quantization and deliberate data pruning matter more than raw compute when deploying intelligence to the physical edge.",
+    "github": "https://github.com",
+    "demo": "https://demo.example.com"
+  },
+  {
+    "id": "veyr",
+    "number": "02",
+    "title": "VEYR",
+    "subtitle": "Autonomous Generative Mythology",
+    "category": "Generative Systems / Narrative",
+    "year": "2024",
+    "oneLiner": "An original dark mythology and procedural worldbuilding engine generating interconnected folklore and artifacts.",
+    "description": "VEYR investigates whether a computational pipeline can construct a coherent mythological canon with its own linguistic grammar, pantheon genealogies, and visual artifacts. Using chained latent diffusion models and directed acyclic graph lore trees, it generates an evolving fictional civilization.",
+    "tags": ["Generative AI", "ComfyUI Pipelines", "Python", "Audio Synthesis", "WebGL"],
+    "metrics": [
+      { "label": "Canon Factions", "value": "18 Factions" },
+      { "label": "Artifacts", "value": "240+ Synthesized" },
+      { "label": "Coherence", "value": "94.2%" }
+    ],
+    "highlights": [
+      "Directed acyclic graph defining metaphysical axioms and historical factions",
+      "LLM arbitration resolving faction conflicts based on canonical philosophy",
+      "Diffusion pipelines synthesizing consistent architectural monoliths and glyphs",
+      "Interactive cosmological viewport exploring generational lore timelines"
+    ],
+    "takeaway": "Generative systems produce artistic resonance only when bounded by rigid architectural axioms.",
+    "github": "https://github.com",
+    "demo": "https://demo.example.com"
+  },
+  {
+    "id": "the-last-radio",
+    "number": "03",
+    "title": "THE LAST RADIO",
+    "subtitle": "Narrative Audio Simulation",
+    "category": "Audio Synthesis / Interactive Media",
+    "year": "2024",
+    "oneLiner": "A psychological simulation built around tactile radio frequency modulation, audio decay, and atmospheric bounce.",
+    "description": "Set in a silent, post-collapse world where the only remaining human contact occurs through electromagnetic frequency drift. Players tune an analog heterodyne receiver through static, harmonic interference, and atmospheric bounce to decipher fragmented transmissions, voice logs, and emergency broadcasts.",
+    "tags": ["Web Audio API", "DSP", "TypeScript", "Procedural Sound", "Canvas 2D"],
+    "metrics": [
+      { "label": "Frequency Bands", "value": "500 kHz – 30 MHz" },
+      { "label": "DSP Nodes", "value": "16 Granular Filters" },
+      { "label": "Audio Latency", "value": "< 12ms" }
+    ],
+    "highlights": [
+      "Custom heterodyne tuning DSP simulating authentic analog drift and carrier whine",
+      "Dynamic ionospheric propagation calculations altering reception based on virtual weather",
+      "Procedural acoustic decay and tape hiss rendering via Web Audio buffers",
+      "Minimalist phosphor oscilloscope visualizer reacting to audio amplitude"
+    ],
+    "takeaway": "Sound creates deeper emotional immersion than photorealistic graphics when designed with tactile physics.",
+    "github": "https://github.com",
+    "demo": "https://demo.example.com"
+  },
+  {
+    "id": "aegis-net",
+    "number": "04",
+    "title": "AEGIS // KERNEL PROBE",
+    "subtitle": "eBPF Adversarial Detection Runtime",
+    "category": "Cybersecurity / Systems",
+    "year": "2025",
+    "oneLiner": "A lightweight Linux security daemon leveraging eBPF kprobes to observe system calls and detect anomalous execution.",
+    "description": "AEGIS attaches non-blocking eBPF kprobes directly to Linux kernel syscalls (execve, openat, connect) to construct a real-time behavioral graph of active processes. By analyzing execution patterns against known baseline behavior, it detects code injection and privilege escalation with near-zero latency.",
+    "tags": ["C", "Rust", "eBPF", "Linux Kernel", "Raw Sockets", "Security"],
+    "metrics": [
+      { "label": "Kernel Overhead", "value": "< 1.4% CPU" },
+      { "label": "Detection Time", "value": "0.18ms" },
+      { "label": "Zero-Copy Rings", "value": "4 MB buffer" }
+    ],
+    "highlights": [
+      "Zero-overhead syscall telemetry collected inside kernel space via BPF programs",
+      "Ring-buffer IPC streaming anomalous process identifiers to user-space daemon",
+      "Heuristic scoring engine catching reflective memory payloads without file touching",
+      "Automated socket teardown and namespace isolation on critical violation"
+    ],
+    "takeaway": "True security cannot be bolted on at the application layer; it must live in the kernel execution path.",
+    "github": "https://github.com",
+    "demo": "https://demo.example.com"
+  }
+]
