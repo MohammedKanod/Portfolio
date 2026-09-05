@@ -103,7 +103,39 @@
   "demo": "https://persnolmemorysystem.vercel.app/"
 }
   ],
-  "experiments": [],
+  "experiments": [
+    {
+  "id": "veriscope-ai",
+  "code": "EXP-002",
+  "title": "VeriScope AI",
+  "oneLiner": "An explainable AI system for analysing news credibility, claims, bias, and supporting evidence.",
+  "category": "ARTIFICIAL INTELLIGENCE / INFORMATION INTEGRITY",
+  "status": "PAUSED // API CONSTRAINT",
+  "date": "2026",
+  "hypothesis": "Can an AI system help users evaluate the credibility of news by decomposing articles into claims and analysing evidence, language, bias, and context rather than reducing them to a simple true-or-false verdict?",
+  "findings": "A functional prototype and application architecture were developed around explainable news analysis, structured AI outputs, and credibility scoring. Development was paused after deployment constraints prevented reliable access to the intended AI inference API. The project remains open for future continuation with a different inference provider or deployment architecture.",
+  "technologies": [
+    "TypeScript",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+    "Drizzle ORM",
+    "Zod",
+    "OpenAPI",
+    "LLM APIs",
+    "AI-Assisted Development"
+  ],
+  "specs": {
+    "Backend": "Express 5",
+    "Runtime": "Node.js 24",
+    "Database": "PostgreSQL",
+    "ORM": "Drizzle ORM",
+    "Validation": "Zod",
+    "API": "OpenAPI + generated clients",
+    "AI": "Gemini API (planned inference layer)"
+  }
+}
+  ],
   "philosophy": {
     "eyebrow": "THE AXIOMATIC CYCLE",
     "loopHeadline": "LEARN → BREAK → BUILD → QUESTION → REBUILD",
