@@ -12,6 +12,8 @@ export interface Experiment {
   findings: string;
   technologies: string[];
   specs: Record<string, string>;
+  github?: string;
+  demo?: string;
 }
 
 export const experiments: Experiment[] = (content.experiments || []) as Experiment[];

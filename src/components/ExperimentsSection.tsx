@@ -2,24 +2,51 @@
 
 import React, { useState } from "react";
 import SectionHeader from "./SectionHeader";
-import { experiments } from "@/data/experiments";
-import { FlaskConical } from "lucide-react";
+import ExperimentModal from "./ExperimentModal";
+import { experiments, Experiment } from "@/data/experiments";
+import { FlaskConical, ArrowUpRight } from "lucide-react";
 
 export default function ExperimentsSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
+  const [selectedExperiment, setSelectedExperiment] = useState<Experiment | null>(null);
 
-  const categories = [
+  // Dynamically include categories present in experiments data alongside preset defaults
+  const dynamicCategories = Array.from(
+    new Set(experiments.map((e) => e.category.trim().toUpperCase()).filter(Boolean))
+  );
+  const defaultCategories = [
     "ALL",
     "CYBERSECURITY",
     "PHYSICS & SIM",
     "AI & SPEECH",
     "STRANGE HARDWARE",
   ];
+  const categories = [
+    "ALL",
+    ...defaultCategories.filter((c) => c !== "ALL"),
+    ...dynamicCategories.filter((c) => !defaultCategories.includes(c)),
+  ];
 
   const filteredExperiments =
     selectedCategory === "ALL"
       ? experiments
-      : experiments.filter((e) => e.category === selectedCategory);
+      : experiments.filter((e) => {
+          const cat = e.category.trim().toUpperCase();
+          if (cat === selectedCategory) return true;
+          if (
+            selectedCategory === "AI & SPEECH" &&
+            (cat.includes("AI") || cat.includes("SPEECH") || cat.includes("INTELLIGENCE"))
+          ) {
+            return true;
+          }
+          if (
+            selectedCategory === "CYBERSECURITY" &&
+            (cat.includes("SECURITY") || cat.includes("CYBER"))
+          ) {
+            return true;
+          }
+          return false;
+        });
 
   return (
     <section
@@ -94,28 +121,76 @@ export default function ExperimentsSection() {
 
             {/* Experiment Squares / Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-auto">
-              {filteredExperiments.slice(0, 3).map((exp) => (
+              {filteredExperiments.slice(0, 6).map((exp) => (
                 <div
                   key={exp.id}
-                  className="aspect-[4/3] border border-editorial p-5 flex flex-col justify-between bg-canvas hover:border-accent transition-colors"
+                  onClick={() => setSelectedExperiment(exp)}
+                  data-cursor="hover"
+                  className="group relative aspect-auto sm:aspect-[4/3] apple-glass rounded-3xl p-6 flex flex-col justify-between cursor-pointer border border-editorial hover:border-accent/60 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                 >
-                  <div className="flex items-center justify-between font-mono text-[11px]">
-                    <span className="text-accent font-bold">{exp.code}</span>
-                    <span className="text-ink-muted">[{exp.category}]</span>
+                  {/* Default Card Face */}
+                  <div className="flex items-center justify-between font-mono text-xs">
+                    <span className="text-accent font-bold px-2 py-0.5 rounded-full bg-accent/10 border border-accent/20">
+                      {exp.code}
+                    </span>
+                    <span className="text-ink-muted uppercase text-[11px] truncate max-w-[160px]">
+                      [{exp.category}]
+                    </span>
                   </div>
 
-                  <div className="space-y-1">
-                    <h4 className="font-sans text-lg font-bold uppercase tracking-tight text-ink">
+                  <div className="space-y-1.5 my-2">
+                    <h4 className="font-sans text-xl sm:text-2xl font-bold uppercase tracking-tight text-ink group-hover:text-accent transition-colors">
                       {exp.title}
                     </h4>
-                    <p className="font-sans text-xs text-ink-secondary line-clamp-2">
-                      {exp.hypothesis}
+                    <p className="font-sans text-xs text-ink-secondary line-clamp-2 leading-relaxed font-light">
+                      {exp.oneLiner || exp.hypothesis}
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-editorial flex items-center justify-between font-mono text-[10px] text-ink-muted">
-                    <span>{exp.status}</span>
-                    <span className="text-accent">TELEMETRY →</span>
+                  <div className="pt-2 border-t border-editorial flex items-center justify-between font-mono text-[11px] text-ink-muted">
+                    <span className="truncate max-w-[140px] text-accent font-medium">
+                      {exp.status}
+                    </span>
+                    <div className="flex items-center gap-1 text-ink group-hover:text-accent transition-colors font-medium">
+                      <span>EXPAND</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+                  </div>
+
+                  {/* Frosted Hover Reveal Overlay */}
+                  <div className="absolute inset-0 p-6 bg-zinc-950/90 text-white backdrop-blur-xl flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto rounded-3xl">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between font-mono text-xs text-blue-300">
+                        <span className="font-bold">{exp.code}</span>
+                        <span>{exp.date || "LAB"}</span>
+                      </div>
+                      <h4 className="font-sans text-xl font-bold uppercase tracking-tight text-white">
+                        {exp.title}
+                      </h4>
+                      <p className="font-sans text-xs text-zinc-300 line-clamp-3 leading-relaxed font-light">
+                        {exp.hypothesis || exp.oneLiner}
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      {exp.technologies && exp.technologies.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5">
+                          {exp.technologies.slice(0, 3).map((t) => (
+                            <span
+                              key={t}
+                              className="px-2 py-0.5 rounded-full bg-white/10 font-mono text-[10px] text-zinc-300"
+                            >
+                              #{t}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      <div className="pt-2 border-t border-white/15 flex items-center justify-between font-mono text-xs text-blue-300 font-semibold">
+                        <span>OPEN TELEMETRY DOSSIER</span>
+                        <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -129,6 +204,13 @@ export default function ExperimentsSection() {
           <span>{experiments.length} EXPERIMENTS ACTIVE</span>
         </div>
       </div>
+
+      {/* Experiment Modal Deep-Dive Container */}
+      <ExperimentModal
+        experiment={selectedExperiment}
+        onClose={() => setSelectedExperiment(null)}
+      />
     </section>
   );
 }
+

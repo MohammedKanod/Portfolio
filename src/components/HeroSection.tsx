@@ -75,15 +75,15 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
           <div className="col-span-4 flex justify-end">
             <div
               ref={photoRef}
-              className="group apple-glass rounded-3xl p-2.5 shadow-2xl relative w-56 h-72 transition-all duration-500 hover:scale-[1.02]"
+              className="group apple-glass rounded-full p-2.5 shadow-2xl relative w-60 h-60 lg:w-64 lg:h-64 aspect-square transition-all duration-500 hover:scale-[1.02]"
             >
-              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-canvas-muted/40">
+              <div className="relative w-full h-full rounded-full overflow-hidden bg-canvas-muted/40">
                 <img
                   src={photoUrl}
                   alt={`${site.name} — Computer Science & Cybersecurity Student, Systems Builder`}
-                  className="w-full h-full object-cover rounded-2xl transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover rounded-full transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
                   <span className="font-mono text-[10px] text-white tracking-widest uppercase font-semibold">
                     {site.name}
                   </span>
@@ -91,7 +91,7 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
               </div>
 
               {/* Status Pill Badge */}
-              <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full apple-glass shadow-md flex items-center gap-1.5 font-mono text-[10px] text-ink">
+              <div className="absolute bottom-2 right-2 px-2.5 py-1 rounded-full apple-glass shadow-md flex items-center gap-1.5 font-mono text-[10px] text-ink z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="font-semibold uppercase">BUILDER</span>
               </div>
