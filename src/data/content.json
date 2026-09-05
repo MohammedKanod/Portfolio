@@ -52,7 +52,57 @@
     "narrativeSub": "Curious by default. Not interested in conventional SaaS templates or safe formulas. I build prototypes to find where systems break and understand why they work.",
     "status": "CURRENT STATUS: ACTIVE LAB MODE"
   },
-  "projects": [],
+  "projects": [
+    {
+  "id": "memora",
+  "number": "01",
+  "title": "Memora",
+  "subtitle": "Personal AI Memory System",
+  "category": "Artificial Intelligence / Speech Systems",
+  "year": "2026",
+  "oneLiner": "An offline-first AI system that understands conversations by transcribing speech, identifying speakers, and reconstructing who said what.",
+  "description": "Memora is an experimental personal memory system built around the idea that machines should be able to remember conversations with context. The system processes audio through voice activity detection, speaker diarization, speaker recognition, and speech-to-text, transforming raw conversations into structured, speaker-aware transcripts. It combines ECAPA-TDNN speaker embeddings, cosine-similarity recognition, agglomerative clustering, and calibrated recognition thresholds to distinguish known and unknown speakers. The project explores the foundations required for a future privacy-first personal memory engine where conversations can become searchable, contextual memories rather than isolated transcripts.",
+  "tags": [
+    "Python",
+    "AI",
+    "Speech-to-Text",
+    "Speaker Diarization",
+    "Speaker Recognition",
+    "Faster-Whisper",
+    "ECAPA-TDNN",
+    "PyTorch",
+    "Machine Learning"
+  ],
+  "metrics": [
+    {
+      "label": "AI Pipeline",
+      "value": "4-stage"
+    },
+    {
+      "label": "Speaker Model",
+      "value": "ECAPA-TDNN"
+    },
+    {
+      "label": "Speech Engine",
+      "value": "Faster-Whisper"
+    },
+    {
+      "label": "Recognition",
+      "value": "Known + Unknown"
+    }
+  ],
+  "highlights": [
+    "Built a modular audio intelligence pipeline combining VAD, speaker diarization, speaker recognition, and speech-to-text.",
+    "Implemented speaker identification using ECAPA-TDNN embeddings with cosine similarity and configurable recognition thresholds.",
+    "Added threshold calibration using FAR, FRR, and EER to evaluate and tune speaker recognition performance.",
+    "Designed the system to support local, privacy-oriented processing without requiring cloud APIs for its core pipeline.",
+    "Built an interactive web interface for recording, uploading, processing, enrolling speakers, calibrating recognition, and exporting transcripts."
+  ],
+  "takeaway": "This experiment showed me that building a useful memory system starts much earlier than an LLM: the system first needs to reliably understand the real world, determine who is speaking, preserve temporal context, and retain trustworthy evidence. Memora is my exploration of that foundation.",
+  "github": "https://github.com/MohammedKanod/Personal-Memory-System",
+  "demo": "https://persnolmemorysystem.vercel.app/"
+}
+  ],
   "experiments": [],
   "philosophy": {
     "eyebrow": "THE AXIOMATIC CYCLE",
