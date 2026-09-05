@@ -26,23 +26,49 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kanod.dev"),
-  title: "Mohammed Kanod — Builder, Cybersecurity & Technology",
+  alternates: {
+    canonical: "/",
+  },
+  title: {
+    default: "Mohammed Kanod — Builder, Cybersecurity & Technology",
+    template: "%s | Mohammed Kanod",
+  },
   description:
-    "Portfolio and experimental laboratory of Mohammed Kanod — Computer Science & Cybersecurity student, builder, and experimenter exploring the boundaries of systems, artificial intelligence, and physical mechanics.",
+    "Portfolio and experimental laboratory of Mohammed Kanod — Computer Science & Cybersecurity student, builder, and experimenter exploring the boundaries of systems, artificial intelligence, and adversarial mechanics.",
   keywords: [
     "Mohammed Kanod",
+    "Mohammed Kanod Portfolio",
+    "Mohammed Kanod Cybersecurity",
+    "Mohammed Kanod GitHub",
+    "Mohammed Kanod LinkedIn",
     "Cybersecurity",
     "Computer Science",
-    "Artificial Intelligence",
     "Systems Architecture",
+    "Kernel Systems",
+    "Adversarial Systems",
+    "Artificial Intelligence",
     "Physics Simulation",
+    "Rust",
+    "Python",
     "Builder Portfolio",
     "Editorial Design",
+    "Technology Laboratory",
   ],
-  authors: [{ name: "Mohammed Kanod" }],
+  authors: [{ name: "Mohammed Kanod", url: "https://kanod.dev" }],
   creator: "Mohammed Kanod",
+  publisher: "Mohammed Kanod",
+  category: "technology",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
-    type: "website",
+    type: "profile",
+    firstName: "Mohammed",
+    lastName: "Kanod",
+    username: "MohammedKanod",
+    gender: "male",
     locale: "en_US",
     url: "https://kanod.dev",
     title: "Mohammed Kanod — Builder, Cybersecurity & Technology",
@@ -64,10 +90,18 @@ export const metadata: Metadata = {
     description:
       "I don't just learn technology. I build things with it. Exploring the space between technology, science and ideas.",
     creator: "@kanod",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   verification: {
     google: "iqZMjdw27E10wTRc2XELYBTOm2Z54-M0ETZ3UmGX_n8",
@@ -80,6 +114,63 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://kanod.dev/#person",
+      "name": "Mohammed Kanod",
+      "alternateName": ["Kanod", "MohammedKanod"],
+      "url": "https://kanod.dev",
+      "image": "https://kanod.dev/profile.jpg",
+      "jobTitle": "Cybersecurity Researcher & Systems Builder",
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Computer Science & Cybersecurity",
+      },
+      "sameAs": [
+        "https://github.com/MohammedKanod",
+        "https://www.linkedin.com/in/mohammed-kanod-a7ba9422a/",
+      ],
+      "knowsAbout": [
+        "Cybersecurity",
+        "Computer Science",
+        "Systems Programming",
+        "Linux Kernel",
+        "Network Security",
+        "Adversarial Systems",
+        "Rust",
+        "Python",
+        "Artificial Intelligence",
+      ],
+      "description":
+        "Mohammed Kanod is a Computer Science & Cybersecurity student, builder, and experimenter exploring autonomous software, operating system kernels, and adversarial security.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://kanod.dev/#website",
+      "url": "https://kanod.dev",
+      "name": "Mohammed Kanod — Portfolio & Laboratory",
+      "description":
+        "Portfolio and experimental laboratory of Mohammed Kanod — Computer Science & Cybersecurity student, builder, and experimenter.",
+      "publisher": {
+        "@id": "https://kanod.dev/#person",
+      },
+      "inLanguage": "en-US",
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://kanod.dev/#profilepage",
+      "url": "https://kanod.dev",
+      "name": "Mohammed Kanod Profile",
+      "mainEntity": {
+        "@id": "https://kanod.dev/#person",
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -90,6 +181,12 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${dmSerif.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="bg-canvas text-ink antialiased selection:bg-accent selection:text-white min-h-screen relative font-sans">
         {children}
       </body>
