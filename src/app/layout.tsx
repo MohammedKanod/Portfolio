@@ -106,6 +106,18 @@ export const metadata: Metadata = {
   verification: {
     google: "iqZMjdw27E10wTRc2XELYBTOm2Z54-M0ETZ3UmGX_n8",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "48x48" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
 };
 
 export const viewport: Viewport = {
@@ -123,7 +135,7 @@ const jsonLd = {
       "name": "Mohammed Kanod",
       "alternateName": ["Kanod", "MohammedKanod"],
       "url": "https://kanod.dev",
-      "image": "https://kanod.dev/profile.jpg",
+      "image": "https://kanod.dev/icon-512.png",
       "jobTitle": "Cybersecurity Researcher & Systems Builder",
       "alumniOf": {
         "@type": "EducationalOrganization",
@@ -156,6 +168,12 @@ const jsonLd = {
         "Portfolio and experimental laboratory of Mohammed Kanod — Computer Science & Cybersecurity student, builder, and experimenter.",
       "publisher": {
         "@id": "https://kanod.dev/#person",
+        "@type": "Person",
+        "name": "Mohammed Kanod",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://kanod.dev/icon-512.png",
+        },
       },
       "inLanguage": "en-US",
     },
@@ -182,6 +200,10 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${dmSerif.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

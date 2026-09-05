@@ -55,8 +55,13 @@ export default function Navigation({ currentCard = 0, onSelectCard }: Navigation
         <a
           href="#human"
           onClick={handleCardClick(0)}
-          className="group flex items-center gap-2 font-sans font-bold tracking-tight text-xs sm:text-sm uppercase"
+          className="group flex items-center gap-2.5 font-sans font-bold tracking-tight text-xs sm:text-sm uppercase"
         >
+          <img
+            src="/icon-192.png"
+            alt="Mohammed Kanod Logo"
+            className="w-6 h-6 sm:w-7 sm:h-7 rounded-full object-cover shadow-sm transition-transform duration-300 group-hover:scale-110 ring-1 ring-accent/30 shrink-0"
+          />
           <span>{site.name}</span>
           <span
             className={`hidden sm:inline-block font-mono text-[10px] font-normal tracking-widest ${
