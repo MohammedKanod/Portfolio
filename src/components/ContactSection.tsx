@@ -85,7 +85,8 @@ export default function ContactSection({ onReset }: { onReset?: () => void }) {
               <a
                 href={site.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer me"
+                aria-label="Mohammed Kanod on GitHub"
                 className="apple-glass px-4 py-2.5 rounded-full text-ink hover:text-accent transition-all hover:scale-105 inline-flex items-center gap-2"
               >
                 <Github className="w-4 h-4" />
@@ -98,7 +99,8 @@ export default function ContactSection({ onReset }: { onReset?: () => void }) {
               <a
                 href={site.linkedin}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer me"
+                aria-label="Mohammed Kanod on LinkedIn"
                 className="apple-glass px-4 py-2.5 rounded-full text-ink hover:text-accent transition-all hover:scale-105 inline-flex items-center gap-2"
               >
                 <Linkedin className="w-4 h-4" />
@@ -111,11 +113,12 @@ export default function ContactSection({ onReset }: { onReset?: () => void }) {
               <a
                 href={site.instagram || site.twitter}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer me"
+                aria-label="Mohammed Kanod Social Profile"
                 className="apple-glass px-4 py-2.5 rounded-full text-ink hover:text-accent transition-all hover:scale-105 inline-flex items-center gap-2"
               >
                 <Instagram className="w-4 h-4" />
-                <span>INSTAGRAM</span>
+                <span>SOCIAL</span>
                 <ArrowUpRight className="w-3 h-3" />
               </a>
             )}
