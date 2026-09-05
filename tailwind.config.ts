@@ -10,23 +10,28 @@ const config: Config = {
     extend: {
       colors: {
         canvas: {
-          DEFAULT: "#F5F4EF",
-          muted: "#ECEAE2",
-          dark: "#0B0C0E",
-          "dark-subtle": "#121418",
+          DEFAULT: "var(--canvas-bg)",
+          muted: "var(--canvas-muted)",
+          card: "var(--canvas-card)",
+          dark: "var(--canvas-dark)",
+          "dark-subtle": "var(--canvas-dark-subtle)",
         },
         ink: {
-          DEFAULT: "#0D0E11",
-          secondary: "#484A54",
-          muted: "#7A7D8A",
-          faint: "#A5A8B5",
-          inverted: "#F5F4EF",
+          DEFAULT: "var(--ink-primary)",
+          secondary: "var(--ink-secondary)",
+          muted: "var(--ink-muted)",
+          faint: "var(--ink-faint)",
+          inverted: "var(--ink-inverted)",
         },
         accent: {
-          DEFAULT: "#1D4ED8",
-          electric: "#2563EB",
-          ice: "#60A5FA",
+          DEFAULT: "var(--accent)",
+          electric: "var(--accent-electric)",
+          ice: "var(--accent-ice)",
         },
+      },
+      borderColor: {
+        editorial: "var(--border)",
+        "editorial-dark": "var(--border-dark)",
       },
       fontFamily: {
         sans: ["var(--font-space-grotesk)", "Inter", "sans-serif"],

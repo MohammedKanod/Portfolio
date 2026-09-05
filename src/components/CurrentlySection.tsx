@@ -12,7 +12,7 @@ export default function CurrentlySection() {
   return (
     <section
       id="currently"
-      className="h-full w-full flex flex-col justify-between pt-16 pb-8 px-6 sm:px-8 lg:px-12 relative overflow-hidden"
+      className="min-h-full w-full flex flex-col justify-between pt-16 sm:pt-20 pb-24 sm:pb-8 px-4 sm:px-8 lg:px-12 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10">
         <SectionHeader
@@ -22,7 +22,7 @@ export default function CurrentlySection() {
         />
 
         {/* Section Title */}
-        <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <div className="flex items-center justify-between mb-3 sm:mb-6">
           <h2 className="section-headline font-sans font-bold tracking-tightest uppercase text-ink">
             {currently.headline}
           </h2>
@@ -34,11 +34,11 @@ export default function CurrentlySection() {
         </div>
 
         {/* Apple-Style Widget Grid Structure */}
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 my-auto items-center">
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-6 my-auto items-stretch">
           {items.map((item, idx) => (
             <div
               key={item.key || idx}
-              className="apple-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 group hover:scale-[1.01]"
+              className="apple-glass rounded-3xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 group hover:scale-[1.01]"
             >
               <div className="flex items-center justify-between font-mono text-xs pb-3 border-b border-editorial">
                 <span className="text-accent font-semibold px-2.5 py-0.5 rounded-full bg-accent/10">
@@ -49,8 +49,8 @@ export default function CurrentlySection() {
                 </span>
               </div>
 
-              <div className="py-4 space-y-2">
-                <h3 className="font-sans text-xl sm:text-2xl font-bold uppercase tracking-tight text-ink group-hover:text-accent transition-colors">
+              <div className="py-3 sm:py-4 space-y-1.5 sm:space-y-2">
+                <h3 className="font-sans text-lg sm:text-2xl font-bold uppercase tracking-tight text-ink group-hover:text-accent transition-colors">
                   {item.title}
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-ink-secondary leading-relaxed font-light">
@@ -58,7 +58,7 @@ export default function CurrentlySection() {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-editorial flex items-center justify-between font-mono text-[11px] text-ink-muted">
+              <div className="pt-3 border-t border-editorial flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-ink-muted">
                 <div className="flex items-center gap-1.5">
                   <Activity className="w-3.5 h-3.5 text-accent" />
                   <span>ACTIVE TELEMETRY</span>
@@ -70,7 +70,7 @@ export default function CurrentlySection() {
 
           {/* If there is only 1 item, fill the second grid slot with a sleek Apple-style telemetry widget */}
           {items.length === 1 && (
-            <div className="apple-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300">
+            <div className="apple-glass rounded-3xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300">
               <div className="flex items-center justify-between font-mono text-xs pb-3 border-b border-editorial">
                 <span className="text-ink-muted px-2.5 py-0.5 rounded-full bg-black/5">
                   [SYSTEM STATUS]
@@ -78,8 +78,8 @@ export default function CurrentlySection() {
                 <span className="text-ink-muted text-[10px]">GLOBAL UPTIME</span>
               </div>
 
-              <div className="py-4 space-y-2">
-                <h3 className="font-sans text-xl sm:text-2xl font-bold uppercase tracking-tight text-ink">
+              <div className="py-3 sm:py-4 space-y-1.5 sm:space-y-2">
+                <h3 className="font-sans text-lg sm:text-2xl font-bold uppercase tracking-tight text-ink">
                   LAB INFRASTRUCTURE
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-ink-secondary leading-relaxed font-light">
@@ -87,7 +87,7 @@ export default function CurrentlySection() {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-editorial flex items-center justify-between font-mono text-[11px] text-ink-muted">
+              <div className="pt-3 border-t border-editorial flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-ink-muted">
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
                   <span>INTEGRITY VERIFIED</span>

@@ -30,8 +30,6 @@ export default function CardDeckNavigator({
     { id: "contact", number: hasPhysics ? "09" : "08", label: "CONNECT" },
   ];
 
-  const isDarkCard = currentCard === 4;
-
   return (
     <aside
       className="fixed right-4 sm:right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end gap-2 font-mono text-[10px]"
@@ -50,9 +48,7 @@ export default function CardDeckNavigator({
             <span
               className={`transition-all duration-200 uppercase tracking-wider ${
                 isActive
-                  ? isDarkCard
-                    ? "text-white font-bold opacity-100 translate-x-0"
-                    : "text-ink font-bold opacity-100 translate-x-0"
+                  ? "text-accent font-bold opacity-100 translate-x-0"
                   : "opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 text-ink-muted"
               }`}
             >
@@ -62,11 +58,7 @@ export default function CardDeckNavigator({
             <span
               className={`flex items-center justify-center transition-all duration-200 rounded-full ${
                 isActive
-                  ? isDarkCard
-                    ? "w-6 h-5 bg-white text-zinc-950 font-bold shadow-sm"
-                    : "w-6 h-5 bg-ink text-canvas font-bold shadow-sm"
-                  : isDarkCard
-                  ? "w-5 h-4 text-zinc-500 hover:text-white border border-zinc-800"
+                  ? "w-6 h-5 bg-accent text-white font-bold shadow-sm"
                   : "w-5 h-4 text-ink-muted hover:text-ink apple-glass"
               }`}
             >

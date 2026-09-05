@@ -28,21 +28,21 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/60 backdrop-blur-sm animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-10 bg-black/70 backdrop-blur-md animate-fadeIn"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-canvas border border-editorial shadow-2xl p-8 sm:p-12 lg:p-16 text-ink"
+        className="relative w-full max-w-4xl max-h-[88vh] overflow-y-auto apple-glass rounded-3xl p-6 sm:p-12 lg:p-16 text-ink shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-ink-muted hover:text-ink transition-colors"
+          className="absolute top-4 sm:top-6 right-4 sm:right-6 p-2 rounded-full apple-glass text-ink-muted hover:text-ink transition-colors"
           data-cursor="hover"
           aria-label="Close modal"
         >
-          <X className="w-6 h-6" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
         {/* Modal Header */}

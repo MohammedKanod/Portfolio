@@ -2,21 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* Base / Dark Mode (Default) */
+:root,
+[data-theme="dark"] {
+  --canvas-bg: #090A0E;
+  --canvas-muted: #12141A;
+  --canvas-card: rgba(18, 21, 29, 0.75);
+  --canvas-dark: #060709;
+  --canvas-dark-subtle: #0F1117;
+  --ink-primary: #F4F4F6;
+  --ink-secondary: #A1A1AA;
+  --ink-muted: #71717A;
+  --ink-faint: #52525B;
+  --ink-inverted: #090A0E;
+  --accent: #3B82F6;
+  --accent-electric: #60A5FA;
+  --accent-ice: #93C5FD;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-dark: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(15, 18, 26, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --ambient-1: rgba(37, 99, 235, 0.22);
+  --ambient-2: rgba(220, 38, 38, 0.18);
+  color-scheme: dark;
+}
+
+/* White / Crisp Editorial Mode */
+[data-theme="white"] {
   --canvas-bg: #F8F7F4;
-  --canvas-dark: #0A0B0E;
+  --canvas-muted: #ECEAE2;
+  --canvas-card: rgba(255, 255, 255, 0.85);
+  --canvas-dark: #0B0C0E;
+  --canvas-dark-subtle: #14171E;
   --ink-primary: #0D0E11;
-  --ink-secondary: #4A4D55;
-  --ink-muted: #7E828E;
-  --accent: #2563EB;
-  --accent-light: #60A5FA;
-  --border-light: rgba(13, 14, 17, 0.08);
-  --border-dark: rgba(246, 245, 240, 0.08);
+  --ink-secondary: #484A54;
+  --ink-muted: #7A7D8A;
+  --ink-faint: #A5A8B5;
+  --ink-inverted: #FFFFFF;
+  --accent: #1D4ED8;
+  --accent-electric: #2563EB;
+  --accent-ice: #3B82F6;
+  --border: rgba(13, 14, 17, 0.09);
+  --border-dark: rgba(13, 14, 17, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --ambient-1: rgba(191, 219, 254, 0.45);
+  --ambient-2: rgba(224, 231, 255, 0.4);
+  color-scheme: light;
+}
+
+/* Grey / Industrial Titanium Mode */
+[data-theme="grey"] {
+  --canvas-bg: #16171B;
+  --canvas-muted: #202228;
+  --canvas-card: rgba(30, 33, 40, 0.8);
+  --canvas-dark: #0E0F12;
+  --canvas-dark-subtle: #1A1C22;
+  --ink-primary: #E4E4E7;
+  --ink-secondary: #A1A1AA;
+  --ink-muted: #71717A;
+  --ink-faint: #52525B;
+  --ink-inverted: #16171B;
+  --accent: #CBD5E1;
+  --accent-electric: #94A3B8;
+  --accent-ice: #E2E8F0;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-dark: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(26, 28, 34, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --ambient-1: rgba(148, 163, 184, 0.15);
+  --ambient-2: rgba(71, 85, 105, 0.2);
+  color-scheme: dark;
+}
+
+/* Pastel / Colorful Aurora Mode */
+[data-theme="pastel"] {
+  --canvas-bg: #FAF6F0;
+  --canvas-muted: #F2ECE4;
+  --canvas-card: rgba(255, 255, 255, 0.75);
+  --canvas-dark: #1F1929;
+  --canvas-dark-subtle: #292236;
+  --ink-primary: #1F1929;
+  --ink-secondary: #4E4559;
+  --ink-muted: #827891;
+  --ink-faint: #A89EB8;
+  --ink-inverted: #FAF6F0;
+  --accent: #8B5CF6;
+  --accent-electric: #7C3AED;
+  --accent-ice: #A78BFA;
+  --border: rgba(139, 92, 246, 0.14);
+  --border-dark: rgba(139, 92, 246, 0.2);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --ambient-1: rgba(233, 213, 255, 0.65);
+  --ambient-2: rgba(254, 215, 170, 0.55);
+  color-scheme: light;
 }
 
 * {
   box-sizing: border-box;
-  cursor: none !important; /* Cursor is completely invisible on the website */
+}
+
+/* Only hide cursor on non-touch desktop pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 html, body {
@@ -30,6 +121,7 @@ html, body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Apple-style Ambient Background Gradients */
@@ -51,8 +143,9 @@ html, body {
   max-width: 750px;
   max-height: 750px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(191, 219, 254, 0.45) 0%, rgba(219, 234, 254, 0.2) 50%, transparent 70%);
+  background: radial-gradient(circle, var(--ambient-1) 0%, transparent 70%);
   filter: blur(80px);
+  transition: background 0.6s ease;
 }
 
 .apple-ambient-bg::after {
@@ -65,59 +158,70 @@ html, body {
   max-width: 800px;
   max-height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(224, 231, 255, 0.5) 0%, rgba(243, 232, 255, 0.25) 50%, transparent 70%);
+  background: radial-gradient(circle, var(--ambient-2) 0%, transparent 70%);
   filter: blur(90px);
+  transition: background 0.6s ease;
 }
 
-/* Apple Glassmorphism Surfaces */
+/* Glassmorphism Surfaces */
 .apple-glass {
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--glass-bg);
   backdrop-filter: blur(28px) saturate(190%);
   -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .apple-glass:hover {
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 14px 38px -10px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+  border-color: var(--border);
+  box-shadow: 0 14px 38px -10px rgba(0, 0, 0, 0.15);
 }
 
 .apple-glass-dark {
-  background: rgba(15, 18, 26, 0.65);
+  background: rgba(12, 14, 20, 0.8);
   backdrop-filter: blur(28px) saturate(190%);
   -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-/* Apple Typography Gradients */
+/* Gradient Typography */
 .apple-gradient-text {
-  background: linear-gradient(135deg, #0D0E11 20%, #1D4ED8 80%);
+  background: linear-gradient(135deg, var(--ink-primary) 30%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .apple-gradient-ice {
-  background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
+  background: linear-gradient(135deg, #FFFFFF 30%, var(--accent-ice) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Fluid Responsive Typography Clamp for 100vh fit */
+/* Fluid Responsive Typography Clamps */
 .display-title {
-  font-size: clamp(2.2rem, 7vw, 7rem);
-  line-height: 0.94;
+  font-size: clamp(2.2rem, 6.5vw, 6.5rem);
+  line-height: 0.95;
   letter-spacing: -0.04em;
 }
 
 .section-headline {
-  font-size: clamp(1.65rem, 3.8vw, 3.8rem);
-  line-height: 0.96;
+  font-size: clamp(1.6rem, 3.8vw, 3.6rem);
+  line-height: 0.98;
   letter-spacing: -0.035em;
 }
 
-/* Modal and card fade-in */
+/* Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Fade in animations */
 @keyframes fadeIn {
   from {
     opacity: 0;

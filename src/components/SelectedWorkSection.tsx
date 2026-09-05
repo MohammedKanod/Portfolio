@@ -12,7 +12,7 @@ export default function SelectedWorkSection() {
   return (
     <section
       id="work"
-      className="h-full w-full flex flex-col justify-between pt-16 pb-8 px-6 sm:px-8 lg:px-12 relative overflow-hidden"
+      className="min-h-full w-full flex flex-col justify-between pt-16 sm:pt-20 pb-24 sm:pb-8 px-4 sm:px-8 lg:px-12 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10">
         {/* Section Header */}
@@ -23,7 +23,7 @@ export default function SelectedWorkSection() {
         />
 
         {/* Section Headline */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
           <h2 className="section-headline font-sans font-bold tracking-tightest uppercase text-ink">
             ENGINEERING & <br className="hidden sm:inline" />
             <span className="font-serif italic font-normal apple-gradient-text">
@@ -31,15 +31,15 @@ export default function SelectedWorkSection() {
             </span>
           </h2>
 
-          <p className="font-sans text-xs sm:text-sm text-ink-secondary max-w-sm leading-relaxed font-light hidden md:block">
-            Curated prototypes, ambient intelligence, and defensive software. Hover over any tile for technical details.
+          <p className="font-sans text-xs sm:text-sm text-ink-secondary max-w-sm leading-relaxed font-light hidden sm:block">
+            Curated prototypes, ambient intelligence, and defensive software. Tap or hover over any tile for technical details.
           </p>
         </div>
 
         {/* Dynamic Square Grid Content */}
         {projects.length === 0 ? (
-          <div className="flex-1 flex items-center justify-center p-4">
-            <div className="w-full max-w-md aspect-square apple-glass rounded-3xl p-8 sm:p-10 flex flex-col items-center justify-center text-center space-y-4 transition-all duration-300">
+          <div className="flex-1 flex items-center justify-center p-2 sm:p-4 my-auto">
+            <div className="w-full max-w-md aspect-auto sm:aspect-square py-8 sm:py-10 px-6 sm:px-10 apple-glass rounded-3xl flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 transition-all duration-300">
               <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
                 <Sparkles className="w-5 h-5 animate-pulse" />
               </div>
@@ -58,8 +58,8 @@ export default function SelectedWorkSection() {
               </p>
 
               <div className="pt-2">
-                <span className="px-3 py-1 rounded-full bg-black/5 font-mono text-[10px] text-ink-muted">
-                  STATUS: IN DEVELOPMENT
+                <span className="px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-[10px] text-accent font-medium">
+                  STATUS: IN ACTIVE DEVELOPMENT
                 </span>
               </div>
             </div>

@@ -92,9 +92,9 @@ export default function PhysicsSection() {
   return (
     <section
       id="physics"
-      className="h-full w-full flex flex-col justify-between pt-16 pb-8 px-6 sm:px-8 lg:px-12 bg-canvas relative overflow-hidden"
+      className="min-h-full w-full flex flex-col justify-between pt-16 sm:pt-20 pb-24 sm:pb-8 px-4 sm:px-8 lg:px-12 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between">
+      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10">
         <SectionHeader
           number="06"
           label={physics.label}

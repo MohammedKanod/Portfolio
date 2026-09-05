@@ -70,13 +70,13 @@ export default function CybersecuritySection() {
       }
 
       nodes.forEach((node) => {
-        ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+        ctx.fillStyle = "rgba(59, 130, 246, 0.95)";
         ctx.beginPath();
         ctx.arc(node.x, node.y, 2.5, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.font = "9px monospace";
-        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+        ctx.font = "10px monospace";
+        ctx.fillStyle = "rgba(113, 113, 122, 0.9)";
         ctx.fillText(node.label, node.x + 8, node.y + 3);
       });
 
@@ -94,51 +94,50 @@ export default function CybersecuritySection() {
   return (
     <section
       id="cybersecurity"
-      className="h-full w-full flex flex-col justify-between pt-16 pb-8 px-6 sm:px-8 lg:px-12 bg-canvas-dark text-canvas border-b border-editorial-dark relative overflow-hidden"
+      className="min-h-full w-full flex flex-col justify-between pt-16 sm:pt-20 pb-24 sm:pb-8 px-4 sm:px-8 lg:px-12 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10">
         <SectionHeader
           number="05"
           label={cybersecurity.label}
           category={cybersecurity.category}
-          dark
         />
 
         {/* Section Headline */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 mb-4 sm:mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-16 mb-4 sm:mb-6">
           <div className="lg:col-span-8">
-            <h2 className="section-headline font-sans font-bold tracking-tightest uppercase text-canvas">
+            <h2 className="section-headline font-sans font-bold tracking-tightest uppercase text-ink">
               {cybersecurity.headlinePart1} <br className="hidden sm:inline" />
               {cybersecurity.headlinePart2} <br className="hidden sm:inline" />
-              <span className="font-serif italic font-normal apple-gradient-ice">
+              <span className="font-serif italic font-normal text-accent">
                 {cybersecurity.headlinePart3}
               </span>
             </h2>
           </div>
 
           <div className="lg:col-span-4 flex flex-col justify-end">
-            <p className="font-sans text-xs sm:text-sm text-zinc-400 leading-relaxed font-light">
+            <p className="font-sans text-xs sm:text-sm text-ink-secondary leading-relaxed font-light">
               {cybersecurity.narrative}
             </p>
           </div>
         </div>
 
-        {/* Apple Dark Glassmorphism Topology Frame */}
-        <div className="flex-1 min-h-[160px] max-h-[220px] apple-glass-dark rounded-3xl flex flex-col my-auto overflow-hidden">
-          <div className="p-3 border-b border-white/10 flex items-center justify-between font-mono text-[10px] text-zinc-400">
+        {/* Apple Glassmorphism Topology Frame */}
+        <div className="h-44 sm:h-56 lg:h-64 apple-glass rounded-3xl flex flex-col my-auto overflow-hidden">
+          <div className="p-3 border-b border-editorial flex items-center justify-between font-mono text-[10px] sm:text-xs text-ink-muted">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-              <span>SOCKET TOPOLOGY // TELEMETRY</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-semibold text-accent">SOCKET TOPOLOGY // TELEMETRY</span>
             </div>
             <span>STATUS: NOMINAL</span>
           </div>
-          <div className="flex-1 relative w-full">
+          <div className="flex-1 relative w-full bg-black/5">
             <canvas ref={canvasRef} className="w-full h-full" />
           </div>
         </div>
 
         {/* Bottom Strip */}
-        <div className="pt-3 border-t border-editorial-dark flex items-center justify-between font-mono text-[11px] text-zinc-500">
+        <div className="pt-3 border-t border-editorial flex items-center justify-between font-mono text-[11px] text-ink-muted">
           <span>CARD 05 // LOW-LEVEL SYSTEMS</span>
           <span>KERNEL SPACE MONITORING</span>
         </div>

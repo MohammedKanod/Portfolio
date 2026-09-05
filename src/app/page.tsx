@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { ThemeProvider } from "@/context/ThemeContext";
 import FluidCursor from "@/components/FluidCursor";
 import Navigation from "@/components/Navigation";
 import CardDeckNavigator from "@/components/CardDeckNavigator";
+import MobileBottomDock from "@/components/MobileBottomDock";
 import HeroSection from "@/components/HeroSection";
 import SelectedWorkSection from "@/components/SelectedWorkSection";
 import ExperimentsSection from "@/components/ExperimentsSection";
@@ -47,12 +49,26 @@ export default function Home() {
     }
   }, [currentCard, goToCard]);
 
-  // Wheel listener with smooth debounce
+  // Wheel listener with inner card scroll awareness
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (document.body.style.overflow === "hidden") return;
       if (Math.abs(e.deltaY) < 18) return;
       if (isTransitioning.current) return;
+
+      // Check if current active card is scrolled
+      const activeCardEl = document.querySelector(".card-active-scroll") as HTMLElement | null;
+      if (activeCardEl) {
+        const atBottom =
+          activeCardEl.scrollHeight - activeCardEl.scrollTop <=
+          activeCardEl.clientHeight + 15;
+        const atTop = activeCardEl.scrollTop <= 15;
+
+        // If not at bottom and scrolling down, scroll inner card
+        if (e.deltaY > 0 && !atBottom) return;
+        // If not at top and scrolling up, scroll inner card
+        if (e.deltaY < 0 && !atTop) return;
+      }
 
       if (e.deltaY > 0) {
         nextCard();
@@ -76,7 +92,19 @@ export default function Home() {
       const touchEndY = e.changedTouches[0].clientY;
       const deltaY = touchStartY.current - touchEndY;
 
-      if (Math.abs(deltaY) > 40) {
+      // Check inner scroll position on touch
+      const activeCardEl = document.querySelector(".card-active-scroll") as HTMLElement | null;
+      if (activeCardEl) {
+        const atBottom =
+          activeCardEl.scrollHeight - activeCardEl.scrollTop <=
+          activeCardEl.clientHeight + 20;
+        const atTop = activeCardEl.scrollTop <= 20;
+
+        if (deltaY > 0 && !atBottom) return;
+        if (deltaY < 0 && !atTop) return;
+      }
+
+      if (Math.abs(deltaY) > 48) {
         if (deltaY > 0) {
           nextCard();
         } else {
@@ -124,14 +152,16 @@ export default function Home() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [nextCard, prevCard, goToCard, TOTAL_CARDS]);
 
-  // Helper to render card wrapper with morph and fade transition
+  // Helper to render card wrapper with morph, fade and anti-overlap scroll safety
   const renderCardWrapper = (cardIndex: number, children: React.ReactNode) => {
     const isActive = currentCard === cardIndex;
     const diff = cardIndex - currentCard;
 
     return (
       <div
-        className="h-screen w-full flex-shrink-0 relative overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
+        className={`h-screen w-full flex-shrink-0 relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform ${
+          isActive ? "overflow-y-auto no-scrollbar card-active-scroll" : "overflow-hidden"
+        }`}
         style={{
           opacity: isActive ? 1 : 0,
           transform: isActive
@@ -143,7 +173,9 @@ export default function Home() {
           pointerEvents: isActive ? "auto" : "none",
         }}
       >
-        {children}
+        <div className="min-h-full w-full flex flex-col justify-between">
+          {children}
+        </div>
       </div>
     );
   };
@@ -151,54 +183,65 @@ export default function Home() {
   let cardCursor = 0;
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-canvas text-ink selection:bg-ink selection:text-canvas">
-      {/* Custom Fluid Cursor (Replaces Default Windows Pointer) */}
-      <FluidCursor />
+    <ThemeProvider>
+      <main className="relative h-screen w-screen overflow-hidden bg-canvas text-ink selection:bg-ink selection:text-canvas">
+        {/* Custom Fluid Cursor (Only active on fine pointer desktop devices) */}
+        <FluidCursor />
 
-      {/* Apple Ambient Mesh Gradients */}
-      <div className="apple-ambient-bg" />
+        {/* Ambient Mesh Gradients with Dynamic Theme Transitions */}
+        <div className="apple-ambient-bg" />
 
-      {/* Global Fixed Apple Glass Navigation Header */}
-      <Navigation currentCard={currentCard} onSelectCard={goToCard} />
+        {/* Global Fixed Apple Glass Navigation Header */}
+        <Navigation currentCard={currentCard} onSelectCard={goToCard} />
 
-      {/* Floating Card Deck Navigator */}
-      <CardDeckNavigator currentCard={currentCard} onSelectCard={goToCard} />
+        {/* Floating Card Deck Navigator (Desktop / Tablet) */}
+        <CardDeckNavigator currentCard={currentCard} onSelectCard={goToCard} />
 
-      {/* Master Card Deck Track with Synchronized Morph & Fade Transitions */}
-      <div
-        className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] relative z-10"
-        style={{ transform: `translate3d(0, -${currentCard * 100}%, 0)` }}
-      >
-        {/* Card 01 — Identity with Photo Frame */}
-        {renderCardWrapper(cardCursor++, <HeroSection onNext={nextCard} />)}
+        {/* Mobile Bottom Dock (Smartphones only) */}
+        <MobileBottomDock
+          currentCard={currentCard}
+          totalCards={TOTAL_CARDS}
+          onSelectCard={goToCard}
+          onNext={nextCard}
+          onPrev={prevCard}
+        />
 
-        {/* Card 02 — Selected Engineering & Security Systems */}
-        {renderCardWrapper(cardCursor++, <SelectedWorkSection />)}
+        {/* Master Card Deck Track with Synchronized Morph & Fade Transitions */}
+        <div
+          className="w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] relative z-10"
+          style={{ transform: `translate3d(0, -${currentCard * 100}%, 0)` }}
+        >
+          {/* Card 01 — Identity with Photo Frame */}
+          {renderCardWrapper(cardCursor++, <HeroSection onNext={nextCard} />)}
 
-        {/* Card 03 — Laboratory Experiments */}
-        {renderCardWrapper(cardCursor++, <ExperimentsSection />)}
+          {/* Card 02 — Selected Engineering & Security Systems */}
+          {renderCardWrapper(cardCursor++, <SelectedWorkSection />)}
 
-        {/* Card 04 — Philosophy */}
-        {renderCardWrapper(cardCursor++, <PhilosophySection />)}
+          {/* Card 03 — Laboratory Experiments */}
+          {renderCardWrapper(cardCursor++, <ExperimentsSection />)}
 
-        {/* Card 05 — Adversarial Cybersecurity */}
-        {renderCardWrapper(cardCursor++, <CybersecuritySection />)}
+          {/* Card 04 — Philosophy */}
+          {renderCardWrapper(cardCursor++, <PhilosophySection />)}
 
-        {/* Optional Card — Physics (if configured) */}
-        {hasPhysics && renderCardWrapper(cardCursor++, <PhysicsSection />)}
+          {/* Card 05 — Adversarial Cybersecurity */}
+          {renderCardWrapper(cardCursor++, <CybersecuritySection />)}
 
-        {/* Card 06/07 — Beyond the Screen */}
-        {renderCardWrapper(cardCursor++, <AboutSection />)}
+          {/* Optional Card — Physics (if configured) */}
+          {hasPhysics && renderCardWrapper(cardCursor++, <PhysicsSection />)}
 
-        {/* Card 07/08 — Currently Grid */}
-        {renderCardWrapper(cardCursor++, <CurrentlySection />)}
+          {/* Card 06/07 — Beyond the Screen */}
+          {renderCardWrapper(cardCursor++, <AboutSection />)}
 
-        {/* Card 08/09 — Contact & Colophon */}
-        {renderCardWrapper(
-          cardCursor++,
-          <ContactSection onReset={() => goToCard(0)} />
-        )}
-      </div>
-    </main>
+          {/* Card 07/08 — Currently Grid */}
+          {renderCardWrapper(cardCursor++, <CurrentlySection />)}
+
+          {/* Card 08/09 — Contact & Colophon */}
+          {renderCardWrapper(
+            cardCursor++,
+            <ContactSection onReset={() => goToCard(0)} />
+          )}
+        </div>
+      </main>
+    </ThemeProvider>
   );
 }

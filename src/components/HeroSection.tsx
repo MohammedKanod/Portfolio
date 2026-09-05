@@ -2,14 +2,14 @@
 
 import React, { useEffect, useRef } from "react";
 import content from "@/data/content.json";
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import gsap from "gsap";
 
 export default function HeroSection({ onNext }: { onNext?: () => void }) {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const photoRef = useRef<HTMLDivElement>(null);
   const { hero, site } = content;
-  const photoUrl = (hero as any).photo || "/profile.jpg";
+  const photoUrl = (hero as any).photo || "/logo.png";
 
   useEffect(() => {
     if (!headlineRef.current) return;
@@ -39,7 +39,7 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
   return (
     <section
       id="human"
-      className="h-full w-full flex flex-col justify-between pt-16 pb-8 px-6 sm:px-8 lg:px-12 relative overflow-hidden"
+      className="min-h-full w-full flex flex-col justify-between pt-16 sm:pt-20 pb-24 sm:pb-8 px-4 sm:px-8 lg:px-12 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10">
         {/* Minimal Meta Label */}
@@ -48,10 +48,10 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
           <span>{hero.label}</span>
         </div>
 
-        {/* Center Stage: Hero Typography + Apple Frosted Glass Photo Frame */}
-        <div className="my-auto py-2 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-          {/* Left / Center: Headline */}
-          <div className="lg:col-span-8">
+        {/* ─── DESKTOP VIEW (Large screens) ─── */}
+        <div className="hidden lg:grid my-auto py-2 grid-cols-12 gap-12 items-center">
+          {/* Left Headline */}
+          <div className="col-span-8">
             <h1
               ref={headlineRef}
               className="display-title font-sans font-bold tracking-tightest uppercase text-ink select-none"
@@ -71,11 +71,11 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
             </h1>
           </div>
 
-          {/* Right: Apple Glass Photo Frame */}
-          <div className="lg:col-span-4 flex justify-start lg:justify-end">
+          {/* Right Photo Frame */}
+          <div className="col-span-4 flex justify-end">
             <div
               ref={photoRef}
-              className="group apple-glass rounded-3xl p-2 sm:p-2.5 shadow-2xl relative w-36 h-48 sm:w-48 sm:h-64 lg:w-56 lg:h-72 transition-all duration-500 hover:scale-[1.02]"
+              className="group apple-glass rounded-3xl p-2.5 shadow-2xl relative w-56 h-72 transition-all duration-500 hover:scale-[1.02]"
             >
               <div className="relative w-full h-full rounded-2xl overflow-hidden bg-canvas-muted/40">
                 <img
@@ -91,7 +91,7 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
               </div>
 
               {/* Status Pill Badge */}
-              <div className="absolute -bottom-2.5 -right-2 sm:bottom-3 sm:right-3 px-2.5 py-1 rounded-full apple-glass shadow-md flex items-center gap-1.5 font-mono text-[9px] sm:text-[10px] text-ink">
+              <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-full apple-glass shadow-md flex items-center gap-1.5 font-mono text-[10px] text-ink">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="font-semibold uppercase">BUILDER</span>
               </div>
@@ -99,16 +99,61 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
           </div>
         </div>
 
-        {/* Quiet Two-Column Editorial Narrative with Glass Pill CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-16 items-end pt-4 border-t border-editorial">
-          <div className="lg:col-span-7">
-            <p className="font-sans text-sm sm:text-lg lg:text-xl text-ink leading-snug font-normal">
+        {/* ─── MOBILE VIEW (Smartphones & compact screens) ─── */}
+        <div className="flex lg:hidden flex-col items-center text-center my-auto py-4 space-y-4">
+          {/* Logo Avatar with Glowing Halo */}
+          <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 apple-glass shadow-2xl mx-auto">
+            <div className="w-full h-full rounded-full overflow-hidden relative">
+              <img
+                src={photoUrl}
+                alt={site.name}
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
+            <div className="absolute -bottom-1.5 right-1 px-2.5 py-0.5 rounded-full apple-glass shadow-sm text-[9px] font-mono text-ink flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-bold">BUILDER</span>
+            </div>
+          </div>
+
+          {/* Confident Headline */}
+          <div className="space-y-1">
+            <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-ink uppercase leading-tight">
+              <span>{hero.headlinePart1} </span>
+              <span className="font-serif italic font-normal apple-gradient-text block sm:inline">
+                {hero.headlinePart2}
+              </span>{" "}
+              <span>{hero.headlinePart3}</span>
+            </h1>
+          </div>
+
+          {/* Rich Narrative */}
+          <p className="text-xs sm:text-sm text-ink-secondary leading-relaxed font-normal max-w-md px-2">
+            {hero.narrativeLead}
+          </p>
+
+          {/* Action Button */}
+          <div className="pt-1">
+            <button
+              onClick={onNext}
+              className="apple-glass px-5 py-2 rounded-full inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-ink hover:text-accent shadow-sm active:scale-95 transition-all"
+            >
+              <span>EXPLORE WORK</span>
+              <ArrowDown className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop Narrative Split */}
+        <div className="hidden lg:grid grid-cols-12 gap-16 items-end pt-4 border-t border-editorial">
+          <div className="col-span-7">
+            <p className="font-sans text-lg lg:text-xl text-ink leading-snug font-normal">
               {hero.narrativeLead}
             </p>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col justify-between gap-3">
-            <p className="font-sans text-xs text-ink-secondary leading-relaxed font-light line-clamp-2 sm:line-clamp-none">
+          <div className="col-span-5 flex flex-col justify-between gap-3">
+            <p className="font-sans text-xs text-ink-secondary leading-relaxed font-light">
               {hero.narrativeSub}
             </p>
 
@@ -127,7 +172,8 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
         {/* Clean Bottom Status Strip */}
         <div className="pt-3 border-t border-editorial flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-ink-muted">
           <span>{hero.status}</span>
-          <span>SCROLL OR USE ARROW KEYS TO ADVANCE ↓</span>
+          <span className="hidden sm:inline">SCROLL OR USE ARROW KEYS TO ADVANCE ↓</span>
+          <span className="sm:hidden">SWIPE TO NAVIGATE ↓</span>
         </div>
       </div>
     </section>

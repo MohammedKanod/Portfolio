@@ -24,9 +24,9 @@ export default function ExperimentsSection() {
   return (
     <section
       id="experiments"
-      className="h-full w-full flex flex-col justify-between pt-16 pb-8 px-6 sm:px-8 lg:px-12 relative overflow-hidden"
+      className="min-h-full w-full flex flex-col justify-between pt-16 sm:pt-20 pb-24 sm:pb-8 px-4 sm:px-8 lg:px-12 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between">
+      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10">
         <SectionHeader
           number="03"
           label="LABORATORY"
@@ -34,7 +34,7 @@ export default function ExperimentsSection() {
         />
 
         {/* Headline */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
           <h2 className="section-headline font-sans font-bold tracking-tightest uppercase text-ink">
             NOT EVERYTHING I BUILD <br className="hidden sm:inline" />
             <span className="font-serif italic font-normal text-accent">
@@ -42,25 +42,34 @@ export default function ExperimentsSection() {
             </span>
           </h2>
 
-          <p className="font-sans text-xs sm:text-sm text-ink-secondary leading-relaxed border-l border-editorial pl-3 font-light max-w-sm hidden md:block">
+          <p className="font-sans text-xs sm:text-sm text-ink-secondary leading-relaxed border-l border-editorial pl-3 font-light max-w-sm hidden sm:block">
             &ldquo;Some ideas are prototypes. Some are experiments. Some fail spectacularly. That&apos;s part of the process.&rdquo;
           </p>
         </div>
 
-        {/* Dynamic Content: Square Coming Soon if Empty, or Filterable Grid */}
+        {/* Dynamic Content: Coming Soon if Empty, or Filterable Grid */}
         {experiments.length === 0 ? (
-          <div className="flex-1 flex items-center justify-center p-4">
-            <div className="w-full max-w-lg aspect-auto sm:aspect-[2/1] border border-editorial p-8 sm:p-10 flex flex-col items-center justify-center text-center space-y-3 bg-canvas-muted/20">
-              <div className="flex items-center gap-2 font-mono text-xs text-accent font-semibold tracking-widest uppercase">
-                <FlaskConical className="w-3.5 h-3.5" />
-                <span>LAB BENCH // IDLE</span>
+          <div className="flex-1 flex items-center justify-center p-2 sm:p-4 my-auto">
+            <div className="w-full max-w-lg aspect-auto sm:aspect-[2/1] apple-glass rounded-3xl p-8 sm:p-10 flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 transition-all duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                <FlaskConical className="w-5 h-5 animate-pulse" />
               </div>
-              <h3 className="font-sans text-3xl sm:text-5xl font-bold uppercase tracking-tight text-ink">
-                COMING SOON.
-              </h3>
-              <p className="font-serif italic text-sm sm:text-base text-ink-secondary max-w-md">
+              <div className="space-y-1">
+                <span className="font-mono text-xs text-accent font-semibold tracking-widest uppercase block">
+                  LAB BENCH // IDLE
+                </span>
+                <h3 className="font-sans text-3xl sm:text-4xl font-bold uppercase tracking-tight text-ink">
+                  COMING SOON.
+                </h3>
+              </div>
+              <p className="font-serif italic text-sm sm:text-base text-ink-secondary max-w-md leading-relaxed">
                 Empirical hardware telemetry, acoustic synthesis modules, and adversarial protocols will be indexed here.
               </p>
+              <div className="pt-2">
+                <span className="px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-[10px] text-accent font-medium">
+                  BENCH STATUS: CALIBRATING
+                </span>
+              </div>
             </div>
           </div>
         ) : (
