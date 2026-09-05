@@ -14,8 +14,9 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
   useEffect(() => {
     if (!headlineRef.current) return;
 
+    const lines = headlineRef.current.querySelectorAll(".headline-line");
     gsap.fromTo(
-      headlineRef.current.children,
+      lines.length > 0 ? lines : headlineRef.current.children,
       { y: 30, opacity: 0 },
       {
         y: 0,
@@ -55,13 +56,16 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
               ref={headlineRef}
               className="display-title font-sans font-bold tracking-tightest uppercase text-ink select-none"
             >
-              <span className="block overflow-hidden">
+              <span className="sr-only">
+                Mohammed Kanod — Cybersecurity Student, Systems Architect &amp; Builder Portfolio
+              </span>
+              <span className="headline-line block overflow-hidden">
                 {hero.headlinePart1}
               </span>
-              <span className="block overflow-hidden font-serif italic font-normal apple-gradient-text">
+              <span className="headline-line block overflow-hidden font-serif italic font-normal apple-gradient-text">
                 {hero.headlinePart2}
               </span>
-              <span className="block overflow-hidden">
+              <span className="headline-line block overflow-hidden">
                 {hero.headlinePart3}
               </span>
             </h1>
@@ -76,7 +80,7 @@ export default function HeroSection({ onNext }: { onNext?: () => void }) {
               <div className="relative w-full h-full rounded-2xl overflow-hidden bg-canvas-muted/40">
                 <img
                   src={photoUrl}
-                  alt={site.name}
+                  alt={`${site.name} — Computer Science & Cybersecurity Student, Systems Builder`}
                   className="w-full h-full object-cover rounded-2xl transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
